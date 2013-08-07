@@ -33,7 +33,7 @@ class apache::mod::worker (
   }
 
   case $::osfamily {
-    'redhat': {
+    'redhat', 'Linux': {
       file_line { '/etc/sysconfig/httpd worker enable':
         ensure => present,
         path   => '/etc/sysconfig/httpd',

@@ -176,8 +176,9 @@ class apache (
     target  => $ports_file,
     content => template('apache/ports_header.erb')
   }
-
+  
   if $apache::params::conf_dir and $apache::params::conf_file {
+    ## Support Amazon Linux similar to RedHat
     case $::osfamily {
       'debian': {
         $docroot              = '/var/www'
@@ -187,7 +188,7 @@ class apache (
         $scriptalias          = '/usr/lib/cgi-bin'
         $access_log_file      = 'access.log'
       }
-      'redhat': {
+      'redhat', 'Linux': {
         $docroot              = '/var/www/html'
         $pidfile              = 'run/httpd.pid'
         $error_log            = 'error_log'

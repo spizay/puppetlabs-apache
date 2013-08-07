@@ -31,7 +31,7 @@ class apache::mod::prefork (
   }
 
   case $::osfamily {
-    'redhat': {
+    'redhat', 'Linux': {
       file_line { '/etc/sysconfig/httpd prefork enable':
         ensure  => present,
         path    => '/etc/sysconfig/httpd',

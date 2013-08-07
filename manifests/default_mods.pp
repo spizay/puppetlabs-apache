@@ -5,7 +5,7 @@ class apache::default_mods (
   # They are not configurable at this time, so we just include
   # them to make sure it works.
   case $::osfamily {
-    'redhat': {
+    'redhat','Linux': {
       apache::mod { 'log_config': }
     }
     default: {}
@@ -18,7 +18,7 @@ class apache::default_mods (
       'debian': {
         include apache::mod::reqtimeout
       }
-      'redhat': {
+      'redhat', 'Linux': {
         include apache::mod::cache
         include apache::mod::disk_cache
         include apache::mod::info

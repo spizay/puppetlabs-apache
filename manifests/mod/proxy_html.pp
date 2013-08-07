@@ -3,7 +3,7 @@ class apache::mod::proxy_html {
   Class['apache::mod::proxy_http'] -> Class['apache::mod::proxy_html']
   apache::mod { 'proxy_html': }
   case $::osfamily {
-    'RedHat': {
+    'RedHat', 'Linux': {
       apache::mod { 'xml2enc': }
     }
     'Debian': {
